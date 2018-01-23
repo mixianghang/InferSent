@@ -4,3 +4,4 @@ dataset/SNLI
 encoder/infersent.allnli.pickle
 
 *.swp
+*.pyc

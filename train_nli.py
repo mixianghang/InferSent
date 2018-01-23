@@ -21,6 +21,7 @@ from mutils import get_optimizer
 from models import NLINet
 
 
+overallStartTime = time.time()
 GLOVE_PATH = "dataset/GloVe/glove.840B.300d.txt"
 
 
@@ -59,7 +60,7 @@ parser.add_argument("--seed", type=int, default=1234, help="seed")
 params, _ = parser.parse_known_args()
 
 # set gpu device
-torch.cuda.set_device(params.gpu_id)
+#torch.cuda.set_device(params.gpu_id)
 
 # print parameters passed, and all parameters
 print('\ntogrep : {0}\n'.format(sys.argv[1:]))
@@ -107,7 +108,7 @@ config_nli_model = {
     'pool_type'      :  params.pool_type      ,
     'nonlinear_fc'   :  params.nonlinear_fc   ,
     'encoder_type'   :  params.encoder_type   ,
-    'use_cuda'       :  True                  ,
+    'use_cuda'       :  False                  ,
 
 }
 
@@ -302,3 +303,5 @@ evaluate(0, 'test', True)
 # Save encoder instead of full model
 torch.save(nli_net.encoder,
            os.path.join(params.outputdir, params.outputmodelname + '.encoder'))
+endTime = time.time()
+print("time cost is {} seconds".format(endTime - startTime))

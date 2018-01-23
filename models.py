@@ -147,6 +147,7 @@ class BLSTMEncoder(nn.Module):
             if word in word_dict:
                 del word_dict[word]
 
+        #print("curr word dict is ", word_dict)
         # udpate vocabulary
         if word_dict:
             new_word_vec = self.get_glove(word_dict)
